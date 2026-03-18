@@ -34,7 +34,7 @@ export default function Home() {
       key: process.env.NEXT_PUBLIC_RAZORPAY_KEY_ID,
       amount: data.amount,
       currency: data.currency,
-      handler: function () {
+      handler: function (data: { amount: number; currency: string; id: string }) {
         window.fbq("track", "Purchase", {
           value: data.amount / 100,
           currency: data.currency,

@@ -1,6 +1,5 @@
 "use client";
 
-import { handler } from "next/dist/build/templates/app-page";
 import Script from "next/script";
 import { useState } from "react";
 
@@ -42,7 +41,10 @@ export default function Home() {
       image: "https://example.com/your_logo",
       order_id: data.id,
       prefill: {
-        contact: "+919876543210",
+        name: "Honey Singh",
+        email: "HelloHoney@gmail.com",
+        "contact": "+919876543210"
+      
       },
       notes: {
         address: "Razorpay Corporate Office",

@@ -39,6 +39,8 @@ export default function Home() {
           value: data.amount / 100,
           currency: data.currency,
         });
+
+        console.log("Payment successful! and Meta Pixel events tracked.");
         },
       name: "Acme Corp",
       description: "Test Transaction",

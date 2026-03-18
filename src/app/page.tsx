@@ -6,6 +6,7 @@ import { useState } from "react";
 declare global {
   interface Window {
     Razorpay: new (options: Record<string, unknown>) => { open: () => void };
+    fbq: (...args: unknown[]) => void;
   }
 }
 
@@ -33,9 +34,12 @@ export default function Home() {
       key: process.env.NEXT_PUBLIC_RAZORPAY_KEY_ID,
       amount: data.amount,
       currency: data.currency,
-      handler: function (response: Record<string, unknown>) {
-        alert("Payment successful! Payment ID: " + response.razorpay_payment_id);
-      },
+      handler: function () {
+        window.fbq("track", "Purchase", {
+          value: data.amount / 100,
+          currency: data.currency,
+        });
+        },
       name: "Acme Corp",
       description: "Test Transaction",
       image: "https://example.com/your_logo",
@@ -53,6 +57,11 @@ export default function Home() {
         color: "#3399cc",
       },
     };
+
+    window.fbq("track", "InitiateCheckout", {
+      value: data.amount / 100,
+      currency: data.currency,
+    });
 
     const paymentObject = new window.Razorpay(options);
     paymentObject.open();

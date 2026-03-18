@@ -1,5 +1,6 @@
 "use client";
 
+import { handler } from "next/dist/build/templates/app-page";
 import Script from "next/script";
 import { useState } from "react";
 
@@ -33,11 +34,16 @@ export default function Home() {
       key: process.env.NEXT_PUBLIC_RAZORPAY_KEY_ID,
       amount: data.amount,
       currency: data.currency,
+      handler: function (response: Record<string, unknown>) {
+        alert("Payment successful! Payment ID: " + response.razorpay_payment_id);
+      },
       name: "Acme Corp",
       description: "Test Transaction",
       image: "https://example.com/your_logo",
       order_id: data.id,
-      callback_url: "/api/razorpay/verify",
+      prefill: {
+        contact: "+919876543210",
+      },
       notes: {
         address: "Razorpay Corporate Office",
       },

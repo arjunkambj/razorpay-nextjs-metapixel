@@ -1,7 +1,7 @@
 "use client";
 import Script from "next/script";
 
-const META_PIXEL_ID = process.env.NEXT_PUBLIC_META_PIXEL_ID!;
+const META_PIXEL_ID = "1733429024308169";
 
 export default function MetaPixel() {
   return (
